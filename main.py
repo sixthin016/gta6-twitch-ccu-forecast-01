@@ -37,7 +37,9 @@ no stored answers, fully deterministic):
   Fallbacks keep every case valid: if too few comparables survive the
   filters, the per-hour median ratio is used; if even that is missing,
   persistence (every hour stays at hour 1, spread widening like a random
-  walk) is used.
+  walk) is used. A degenerate hour-1 print (zero, negative or
+  non-numeric) anchors on the median hour-1 of the usable comparables
+  instead of silently forecasting from a single viewer.
 
 Run locally: mkdir -p out && MAKEFUN_INPUT_DIR=input MAKEFUN_OUTPUT_DIR=out
 python3 main.py. The grader runs `python3 -P -s /bot/main.py` (Python 3.13,
@@ -297,9 +299,20 @@ def forecast_case(case):
     first = next((k for k in known if k.get("hour") == 1), None)
     if first is None:
         raise ValueError("case has no hour-1 print")
-    p1 = max(1.0, float(first["viewers"]))
 
     pool = build_pool(case)
+    try:
+        v1 = float(first["viewers"])
+    except (TypeError, ValueError):
+        v1 = 0.0
+    if v1 <= 0:
+        # Degenerate hour-1 print (zero, negative or non-numeric): anchor
+        # on the median hour-1 of the usable comparables rather than
+        # silently forecasting from a single viewer.
+        v1 = median([math.exp(lv) for lv, _, _ in pool]) \
+            if pool else float(MIN_HOUR1_VIEWERS)
+    p1 = max(1.0, v1)
+
     rolling = target_is_rolling(case)
     target_x = [1.0, math.log(p1), 1.0 if rolling else 0.0]
 
