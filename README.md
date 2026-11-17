@@ -1,6 +1,8 @@
 # Forecast GTA VI's launch-day Twitch viewers hour by hour
 
 [![make.fun · gta6-twitch-ccu-forecast-01](https://make.fun/badge/gta6-twitch-ccu-forecast-01.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
+[![rank](https://make.fun/badge/gta6-twitch-ccu-forecast-01/sixthin016/gta6-twitch-ccu-forecast-01/rank.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
+[![reward](https://make.fun/badge/gta6-twitch-ccu-forecast-01/sixthin016/gta6-twitch-ccu-forecast-01/reward.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
 
 Entry for make.fun's `gta6-twitch-ccu-forecast-01` bounty ($250 USDC, 20 paid
 places, 1st $50). The program reads one case and forecasts, for each of
